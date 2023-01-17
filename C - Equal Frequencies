@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int n;
+string s;
+pair<int,int> cnt[26];
+int quota[26], quotab[26];
+
+void solve() {
+	cin >> n;
+	cin >> s;
+	for(int i=0; i<26; i++) cnt[i] = make_pair(0, i);;
+	for(char c:s) {
+		cnt[c-'a'].first++;
+	}
+	sort(cnt, cnt+26);
+	reverse(cnt, cnt+26);
+	int ans = -1, ans2 = 0;
+	for(int i=1; i<=26; i++) {
+		if(n%i!=0) continue;
+		int sum = 0;
+		for(int j=0; j<i; j++) {
+			sum += min(cnt[j].first, n/i);
+		}
+		if(sum > ans) {
+			ans = sum;
+			ans2 = i;
+		}
+	}
+	cout << n-ans << "\n";
+	for(int i=0; i<26; i++) quota[i] = 0;
+	for(int i=0; i<ans2; i++) {
+		quota[cnt[i].second] = min(n/ans2, cnt[i].first);
+		quotab[cnt[i].second] = n/ans2 - quota[cnt[i].second];
+	}
+	for(int i=0; i<n; i++) {
+		if(quota[s[i]-'a']>0) {
+			quota[s[i]-'a']--;
+			cout << s[i];
+		} else {
+			int ptr = 0;
+			while(quotab[ptr]==0) ptr++;
+			cout << (char)('a'+ptr);
+			quotab[ptr]--;
+		}
+	}
+	cout << "\n";
+}
+
+int main() {
+	ios::sync_with_stdio(false); // cin.tie(0);
+	int t; cin >> t;
+	while(t--) {
+		solve();
+	}
+} 
