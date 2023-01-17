@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#include<vector>
+#include <algorithm>
+#define pb push_back
+#define int long long
+#define s string
+#define v vector<int>
+
+using namespace std;
+
+void solve()
+{
+    int w,d,h;
+    int a,b,f,g;
+    cin>>w>>d>>h>>a>>b>>f>>g;
+
+    int fo = g+h+b+abs(f-a);
+    int ba = abs(d-g) + h+abs(d-b)+ abs(f-a);
+    int l = f+h+a+abs(g-b);
+    int r = abs(w-f)+h+abs(w-a)+abs(g-b);
+
+    int ans = min({fo,ba,l,r});
+    cout<<ans<<endl;
+    
+}
+
+signed main()
+{
+    int tc;
+    cin>>tc;
+    while(tc--)
+    {
+      solve();         
+    } 
+}
