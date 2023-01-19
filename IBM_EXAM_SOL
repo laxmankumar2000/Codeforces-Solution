@@ -1,1 +1,87 @@
 
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution
+{   
+    public: 
+    //Mathods to check for prime Value.
+    bool isprime(int n)
+    {
+        if (n <= 1)
+        return false;
+ 
+    
+        for (int i = 2; i < n; i++)
+        if (n % i == 0)
+            return false;
+ 
+    return true;
+    }
+    int largestPrimeElement(vector<vector<int> > mat) 
+    {
+        // code here 
+        int r = mat.size();
+        int c = mat[0].size();
+        int n = 0,m = 0;
+        int maxval = -100000000;
+        
+        //right diagonal
+        while(n!=r && m!=c)
+        {
+            int temp = mat[n][m];
+            bool flag = isprime(temp);
+            if(flag)
+            {
+                maxval = max(maxval,temp);
+            }
+            n++;
+            m++;
+        }
+
+        //left diagonal
+        n=0;m=3;
+        while(n!=r && m!=-1)
+        {
+            int temp = mat[n][m];
+            bool flag = isprime(temp);
+            if(flag)
+            {
+                maxval = max(maxval,temp);
+            }
+            n++;
+            m--;
+        }
+        return maxval;
+
+    }
+};
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin>>t;
+    
+    while(t--) 
+    {
+        int r,c;
+        cin>>r>>c;
+        vector<vector<int> > matrix(r); 
+
+        for(int i=0; i<r; i++)
+        {
+            matrix[i].assign(c, 0);
+            for( int j=0; j<c; j++)
+            {
+                cin>>matrix[i][j];
+            }
+        }
+
+        Solution ob;
+        int result = ob.largestPrimeElement(matrix);
+        cout<<"Largest Prime Element"<<endl;
+        cout<<"In Both Diagonals is  "<< result<<endl;
+        
+    }
+    return 0;
+}
