@@ -1,0 +1,75 @@
+#include <bits\stdc++.h>
+#include<vector> 
+
+#define pb push_back
+#define int long long
+#define s string
+#define v vector<int>
+#define fi first
+#define se second
+#define en endl
+#define s string
+
+using namespace std;
+int n=0,sum=0;
+
+bool isPrime(int num)
+{
+    for (int i = 2; i <= num / 2; ++i) {
+      if (num % i == 0) {
+        return true;
+      }
+    }
+    return false;
+}
+
+void solve()
+{
+  cin>>n;
+  v v1;
+  for(int i=0;i<n;i++)
+  {
+    int temp=0;
+    cin>>temp;
+    v1.pb(temp);
+  }
+  int d = 0,c=0;
+  for(int i=0;i<n-1;i++)
+  {
+    if(v1[i+1]-v1[i]>=240)
+    {
+        c+=2;
+    }
+    if(v1[i+1]-v1[i]>=120)
+    {
+        c++;
+    }
+    
+  }
+  if((c>=2)|| (1440-v1[n-1]>=240))
+  cout<<"YES"<<en;
+  else
+  cout<<"NO"<<en;
+
+
+}
+
+
+
+signed main()
+{
+    int tc;
+    cin>>tc;
+    while(tc--)
+    {
+      solve();         
+    } 
+}
+
+
+// signed main()
+// {
+//      int n;
+//      cin>>n;
+    
+// }
