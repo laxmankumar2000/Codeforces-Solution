@@ -1,0 +1,54 @@
+#include <bits\stdc++.h>
+#include<vector> 
+
+#define pb push_back
+#define int long long
+#define s string
+#define v vector<int>
+#define fi first
+#define se second
+#define en endl
+#define s string
+
+using namespace std;
+int n=0,sum=0;
+
+
+
+void solve()
+{
+  cin>>n;
+  v v1(n);
+  for(int i=0;i<n;i++)
+  {
+    cin>>v1[i];
+  }
+
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j=i+1;j<n;j++)
+        {
+            if(__gcd(v1[i],v1[j])==1 || __gcd(v1[i],v1[j])==2)
+            {
+                    cout<<"Yes"<<en;
+                    return;
+            }
+        }
+    }
+    cout<<"No"<<en;
+
+}
+
+
+
+signed main()
+{
+    int tc;
+    cin>>tc;
+    while(tc--)
+    {
+      solve();         
+    } 
+}
+
+// Welcome to my Solution. For explanation of this solution Subscribe my Youtube channel https://www.youtube.com/@ourcodinghouse
